@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+
+body {
+  font-family: "Epilogue", sans-serif;
+}
+
+
+@keyframes modal-show {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes modal-hide {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.animate-modal-show {
+  animation: modal-show 0.2s ease-out forwards;
+}
+
+.animate-modal-hide {
+  animation: modal-hide 0.2s ease-in forwards;
+}
