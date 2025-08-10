@@ -16,7 +16,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    port: 3000, // Set development server port to 3000
+    port: 3001, // Set development server port to 3000
     host: '0.0.0.0',  // to bind to all network interfaces
     allowedHosts: [
       'vybly.io',        // Allow vybly.io
@@ -26,7 +26,7 @@ export default defineConfig({
     open: true // Optional: automatically open browser
   },
   preview: {
-    port: 3000 // Also set preview port to 3000
+    port: 3001 // Also set preview port to 3000
   }
 })
 
