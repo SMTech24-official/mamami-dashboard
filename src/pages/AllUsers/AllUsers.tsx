@@ -394,7 +394,8 @@ const AllUsers = () => {
                       >
                         <FiEdit size={18} />
                       </button> */}
-                      {user.isActive ? (
+
+                      {/* {user.isActive ? (
                         // Conditions where delete should be disabled:
                         // 1. Any user trying to delete themselves
                         // 2. ADMIN trying to delete SUPER_ADMIN or other ADMINS
@@ -441,7 +442,65 @@ const AllUsers = () => {
                         >
                           <FiTrash2 size={18} />
                         </button>
+                      )} */}
+
+                      {user.isActive ? (
+                        // Conditions where delete should be disabled:
+                        // 1. Any user trying to delete themselves
+                        // 2. SUPER_ADMIN trying to delete another SUPER_ADMIN
+                        // 3. ADMIN trying to delete SUPER_ADMIN or other ADMINS
+                        user.id === currentUser?.id ||
+                        (currentUser?.role === "SUPER_ADMIN" &&
+                          user.role === "SUPER_ADMIN") ||
+                        (currentUser?.role === "ADMIN" &&
+                          (user.role === "SUPER_ADMIN" ||
+                            user.role === "ADMIN")) ? (
+                          <button
+                            disabled
+                            className="text-gray-300 cursor-not-allowed"
+                            title={
+                              user.id === currentUser?.id
+                                ? "Cannot delete yourself"
+                                : currentUser?.role === "SUPER_ADMIN" &&
+                                  user.role === "SUPER_ADMIN"
+                                ? "Cannot delete other super admins"
+                                : currentUser?.role === "ADMIN" &&
+                                  user.role === "SUPER_ADMIN"
+                                ? "Cannot delete super admins"
+                                : "Cannot delete other admins"
+                            }
+                          >
+                            <FiTrash2 size={18} />
+                          </button>
+                        ) : deletingUserId === user.id ? (
+                          <div className="flex justify-center items-center">
+                            <LuLoaderCircle
+                              className="text-[#E46B71] animate-spin"
+                              size={18}
+                            />
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => handleDelete(user.id)}
+                            className="text-gray-500 hover:text-red-600 hover:cursor-pointer transition-all duration-300"
+                            title="Soft Delete"
+                            disabled={deletingUserId !== null}
+                          >
+                            <FiTrash2 size={18} />
+                          </button>
+                        )
+                      ) : (
+                        <button
+                          disabled
+                          className="text-gray-300 cursor-not-allowed"
+                          title="User is already soft deleted"
+                        >
+                          <FiTrash2 size={18} />
+                        </button>
                       )}
+                      {/*  */}
+                      {/*  */}
+                      {/*  */}
 
                       {currentUser?.role === "SUPER_ADMIN" && (
                         <>

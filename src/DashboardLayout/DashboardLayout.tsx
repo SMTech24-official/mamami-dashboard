@@ -118,7 +118,7 @@ export default function Dashboard() {
 
   const verifiedUsers = users.filter((user) => user.isProfileVerified).length;
   const unverifiedUsers = users.length - verifiedUsers;
-// console.log(currentUser)
+  // console.log(currentUser)
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Mobile Backdrop */}
